@@ -7,15 +7,6 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-
-// const db = mysql.createConnection({
-//     host: 'bwnqx83k3vkvsq0pmasz-mysql.services.clever-cloud.com',
-//     user: 'uxpy9ul0wzylmg3c',
-//     password: 'AOeVBibm31KFLKFOcvDW',
-//     database: 'bwnqx83k3vkvsq0pmasz'
-// });
-
-
 const db = mysql.createConnection({
     host: 'sql12.freesqldatabase.com',
     user: 'sql12731361',
@@ -68,5 +59,7 @@ app.delete('/todos/:id', (req, res) => {
 });
 
 
-const PORT = 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
