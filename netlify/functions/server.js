@@ -2,17 +2,12 @@ const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const serverless=require('serverless-http')
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// const db = mysql.createConnection({
-//     host: 'sql12.freesqldatabase.com',
-//     user: 'sql12731361',
-//     password: 'KpCQ7iYNPC',
-//     database: 'sql12731361'
-// });
 
 const db = mysql.createConnection({
     host: 'sql12.freesqldatabase.com',
@@ -66,7 +61,5 @@ app.delete('/todos/:id', (req, res) => {
 });
 
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+
+module.exports.handler=serverless(app)
